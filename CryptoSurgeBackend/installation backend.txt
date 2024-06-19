@@ -1,0 +1,105 @@
+installation backend :
+npm init -y
+npm i express mysql2 body-parser express-validator bcryptjs jsonwebtoken mongodb
+npm -i -D nodemon
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------
+mongodb :
+
+    // Add schema validation
+    await database.command({
+      collMod: config.posts_feedback,
+      validator: {
+        $jsonSchema: {
+          bsonType: "object",
+          required: ["user_id", "post_id", "feedback_type", "created_at"],
+          properties: {
+            _id: {
+              bsonType: "objectId",
+              description: "must be an ObjectId and is required"
+            },
+            user_id: {
+              bsonType: "int",
+              description: "must be an int and is required"
+            },
+            post_id: {
+              bsonType: "int",
+              description: "must be an int and is required"
+            },
+            feedback_type: {
+              bsonType: "bool",
+              description: "must be a boolean and is required"
+            },
+            created_at: {
+              bsonType: "date",
+              description: "must be a date and is required"
+            }
+          }
+        }
+      },
+
+      validationLevel: "strict",
+      validationAction: "error"
+    });
+
+
+
+
+
+    // Add schema validation
+    await database.command({
+      collMod: config.news_feedback,
+      validator: {
+        $jsonSchema: {
+          bsonType: "object",
+          required: ["user_id", "post_id", "feedback_type", "created_at"],
+          properties: {
+            _id: {
+              bsonType: "objectId",
+              description: "must be an ObjectId and is required"
+            },
+            user_id: {
+              bsonType: "int",
+              description: "must be an int and is required"
+            },
+            post_id: {
+              bsonType: "int",
+              description: "must be an int and is required"
+            },
+            feedback_type: {
+              bsonType: "bool",
+              description: "must be a boolean and is required"
+            },
+            created_at: {
+              bsonType: "date",
+              description: "must be a date and is required"
+            }
+          }
+        }
+      },
+
+      validationLevel: "strict",
+      validationAction: "error"
+    });
+
+
+const correctDocument = {
+  user_id: 2,
+  post_id: 4,
+  feedback_type: true,
+  created_at: new Timestamp()
+};
+const incorrectDocument = {
+  user_id: "wrong_type",
+  post_id: 5678,
+  feedback_type: "not_boolean",
+  created_at: "not_timestamp"
+};
+const result = await collection.insertOne(correctDocument);
+console.log('Inserted document:', result.insertedId);
+------------------------------------------------------------------------------------------------------------

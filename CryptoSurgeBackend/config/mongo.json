@@ -1,0 +1,8 @@
+{
+	"host": "clustercryptosurge.nix1hgm.mongodb.net",
+	"cluster": "ClusterCryptoSurge",
+	"credentials": "certificates/mongodb.pem",
+	"database": "DatabaseCryptoSurge",
+	"posts_feedback": "posts_feedback",
+	"news_feedback": "news_feedback"
+}
