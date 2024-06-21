@@ -1,0 +1,94 @@
+.menu-wrapper {
+  position: relative;
+}
+
+.menu-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 280px; 
+  height: 100vh;
+  transition: transform 0.3s ease;
+}
+
+.menu-container.hidden {
+  transform: translateX(-100%);
+}
+
+.toggle-button {
+  position: absolute;
+  top: 0;
+  right: -40px; /* Initial position outside the viewport */
+  transition: right 0.3s ease; /* Transition for the button movement */
+}
+
+.toggle-button.show {
+  right: 0; /* Move the button into view */
+}
+
+
+.content {
+  margin-left: 280px;
+  transition: margin-left 0.3s ease;
+}
+
+.content.expanded {
+  margin-left: 0;
+}
+
+.scrollarea {
+  overflow-y: auto;
+  height: calc(100vh - 200px);
+}
+
+.scrollarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollarea::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.scrollarea::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.MenuButton {
+  font-size: 16px;
+}
+
+.subMenuButton {
+  margin-left: 20px;
+  font-size: 14px;
+}
+
+.subSubMenuButton {
+  margin-left: 40px;
+  font-size: 12px;
+}
+
+.fa-circle-chevron-left {
+  font-size: 20px;
+  color: rgba(222, 226, 230, 0.75);
+  transition: all 0.1s;
+  cursor: pointer;
+}
+
+.fa-circle-chevron-left:hover {
+  color: white;
+  font-size: 22px;
+}
+
+.fa-circle-chevron-right {
+  font-size: 20px;
+  color: rgba(222, 226, 230, 0.75);
+  transition: all 0.1s;
+  cursor: pointer;
+}
+
+.fa-circle-chevron-right:hover {
+  color: white;
+  font-size: 22px;
+}
+

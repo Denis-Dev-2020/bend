@@ -1,0 +1,57 @@
+<div class="menu-wrapper">
+  <div class="flex-grow-1 content" [class.expanded]="menuHidden">
+    <div class="menu-container" [class.hidden]="menuHidden">
+      <div class="d-flex align-items-center flex-shrink-0 justify-content-between border-top border-end px-3">
+        <div>
+          <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none">
+            <span class="fs-5 fw-semibold p-3">Analysis Hub</span>
+          </a>
+        </div>
+        <div>
+          <i class="fa-solid fa-circle-chevron-left" (click)="toggleMenu()"></i>
+        </div>
+      </div> 
+      <div class="scrollarea border-bottom border-end px-3">
+        <ul class="list-unstyled ps-0">
+          <li *ngFor="let item of menu" class="mb-1">
+            <button class="btn btn-dark MenuButton" [attr.data-bs-target]="'#collapse-' + sanitizeId(item.hub_id)" data-bs-toggle="collapse" aria-expanded="false" (click)="toggleItem(sanitizeId(item.hub_id))">
+              <i class="fa" style="padding-right: 5px;" [ngClass]="{'fa-angle-down': isExpanded(sanitizeId(item.hub_id)), 'fa-angle-right': !isExpanded(sanitizeId(item.hub_id))}"></i>
+              {{ this.getTitleByCategoryId(item.hub_id) }}
+            </button>
+            <div class="collapse" [id]="'collapse-' + sanitizeId(item.hub_id)">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                <li *ngIf="item.subMenu; else stopicList">
+                  <ng-container *ngFor="let subItem of item.subMenu">
+                    <ng-container *ngIf="isSubMenuObject(subItem)">
+                      <div>
+                        <button class="btn btn-dark subMenuButton" [attr.data-bs-target]="'#collapse-' + sanitizeId(subItem.topic_id)" data-bs-toggle="collapse" aria-expanded="false" (click)="toggleItem(sanitizeId(subItem.topic_id))">
+                          <i class="fa" style="padding-right: 5px;" [ngClass]="{'fa-angle-down': isExpanded(sanitizeId(subItem.topic_id)), 'fa-angle-right': !isExpanded(sanitizeId(subItem.topic_id))}"></i>
+                          {{ this.getTitleByCategoryId(subItem.topic_id) }}
+                        </button>
+                      </div>
+                      <div class="collapse" [id]="'collapse-' + sanitizeId(subItem.topic_id)">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                          <li *ngFor="let subSubItem of subItem.subtopic_id">
+                            <button class="btn btn-dark subSubMenuButton" (click)="selectTopicAndSubtopic(subItem.topic_id,subSubItem);">{{ this.getTitleByCategoryId(subSubItem) }}</button>
+                          </li>
+                        </ul>
+                      </div>
+                    </ng-container>
+                  </ng-container>
+                </li>
+                <ng-template #stopicList>
+                  <li *ngFor="let stopic of item.subtopic_id">
+                    <button class="btn btn-dark subSubMenuButton" (click)="selectTopicAndSubtopic(item.hub_id,stopic);">{{ this.getTitleByCategoryId(stopic) }}</button>
+                  </li>
+                </ng-template>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="toggle-button text-light mt-3" *ngIf="menuHidden" (click)="toggleMenu()">
+    <i class="fa-solid fa-circle-chevron-right"></i>
+  </div>
+</div>
