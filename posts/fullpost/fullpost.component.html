@@ -1,9 +1,0 @@
- <div *ngIf="selectedPost" class="card" style="height: 100%;width: 100%;border-radius: 0;">
-  <div class="card-body"  style="background-image: url(assets/shape6.png); background-size: cover;">
-    <h5 class="card-title">{{ selectedPost!.title }}</h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary">
-    	{{ selectedPost!.created | date:'shortTime' }} - {{ selectedPost!.created | date }}
-    </h6>
-    <p class="card-text">{{ selectedPost!.body }}</p>
-  </div>
-</div>
