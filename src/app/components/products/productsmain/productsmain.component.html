@@ -1,0 +1,27 @@
+<div>
+	<app-header></app-header>
+</div>
+
+<div class="container-fluid pb-3">
+    <div class="d-grid gap-3" style="grid-template-columns: 1fr 2fr;">
+      <div class="bg-body-tertiary border rounded-3">
+        <form class="w-100" role="search">
+          <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        </form>
+		<div>
+			<app-productadd></app-productadd>
+		</div>
+		<div>
+			<app-productslist></app-productslist>
+		</div>
+
+      </div>
+      <div class="bg-body-tertiary border rounded-3">
+        <app-productdetail></app-productdetail>
+      </div>
+    </div>
+  </div>
+
+<div>
+	<app-footer></app-footer>
+</div>
