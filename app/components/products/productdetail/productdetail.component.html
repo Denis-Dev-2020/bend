@@ -1,0 +1,92 @@
+<!-- <div *ngIf="product">
+  <div *ngIf="!isEditing">
+    <h2>{{ product.Name }}</h2>
+    <img [src]="product.Image" alt="{{ product.Name }}" class="img-thumbnail" width="200"/>
+    <p>{{ product.Description }}</p>
+    <p>Price: ${{ product.Price }}</p>
+    <p>Creation Date: {{ product.CreationDate }}</p>
+    <button (click)="enableEditing()">Edit</button>
+  </div>
+
+  <div *ngIf="isEditing">
+    <label>
+      Name:
+      <input [(ngModel)]="editableProduct.Name" type="text">
+    </label>
+    <br>
+    <label>
+      Image URL:
+      <input [(ngModel)]="editableProduct.Image" type="text">
+    </label>
+    <br>
+    <label>
+      Description:
+      <textarea [(ngModel)]="editableProduct.Description"></textarea>
+    </label>
+    <br>
+    <label>
+      Price:
+      <input [(ngModel)]="editableProduct.Price" type="number">
+    </label>
+    <br>
+    <label>
+      Creation Date:
+      <input [(ngModel)]="editableProduct.CreationDate" type="text">
+    </label>
+    <br>
+    <button (click)="saveProduct()">Save</button>
+    <button (click)="cancelEditing()">Cancel</button>
+  </div>
+</div>
+ -->
+
+
+
+
+
+
+
+
+
+<!-- src/app/components/products/productdetail/productdetail.component.html -->
+
+<div *ngIf="product">
+  <div *ngIf="!isEditing">
+    <h2>{{ product.Name }}</h2>
+    <img [src]="product.Image" alt="{{ product.Name }}" class="img-thumbnail" width="200"/>
+    <p>{{ product.Description }}</p>
+    <p>Price: ${{ product.Price }}</p>
+    <p>Creation Date: {{ product.CreationDate }}</p>
+    <button class="btn btn-primary" (click)="enableEditing()">Edit</button>
+  </div>
+
+  <div *ngIf="isEditing">
+<form *ngIf="productForm" [formGroup]="productForm" (ngSubmit)="saveProduct()">
+  <div class="mb-3">
+    <label for="Name" class="form-label">Name:</label>
+    <input id="Name" type="text" class="form-control" formControlName="Name">
+    <div *ngIf="productForm.get('Name')?.invalid && productForm.get('Name')?.touched" class="invalid-feedback">
+      Name is required.
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="Price" class="form-label">Price:</label>
+    <input id="Price" type="number" class="form-control" formControlName="Price">
+    <div *ngIf="productForm.get('Price')?.invalid && productForm.get('Price')?.touched" class="invalid-feedback">
+      Price is required and must be greater than zero.
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="CreationDate" class="form-label">Creation Date:</label>
+    <input id="CreationDate" type="date" class="form-control" formControlName="CreationDate">
+    <div *ngIf="productForm.get('CreationDate')?.invalid && productForm.get('CreationDate')?.touched" class="invalid-feedback">
+      Creation Date is required.
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid">Save</button>
+  <button type="button" class="btn btn-secondary ms-2" (click)="cancelEditing()">Cancel</button>
+</form>
+
+
+  </div>
+</div>
